@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: sisestar
+        psr4_prefix: sisestar
+        src_path: app

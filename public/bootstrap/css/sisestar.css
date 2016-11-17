@@ -1,0 +1,232 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/09/2016, 21:13:35
+    Author     : jeferson
+*/
+
+body{
+    background-image: url("UntitledDiagram.png");
+    background-size: 30%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+.overflow{
+    max-height:550px;
+    overflow-y:auto;
+}
+
+.funcionariosLogados{
+    max-height:90%;
+    overflow-y:auto;
+    position: fixed;
+    right: 0%;
+    top: 5%;
+
+    float: right;
+    width: 15%;   
+}
+.dinamica{
+    width: 70%;
+    display: block;
+
+}
+.imgLogo{
+    width: 20px;
+    height: 20px;
+}
+
+#imgFuncLogado{
+    width: 30px;
+    height: 30px;
+}
+#btnTelaPequena{
+    font-size: 10px;
+    position: fixed;
+    left: 30%;
+    top: 5px;
+}
+#addLogin{
+    margin-right: 5px;
+}
+#superior-bar{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    padding: 10px;    
+    color: white;
+    display: block;
+
+}
+.menu-gestao{
+    position: fixed;
+    top: 5%;
+    left: 0;
+}
+.btn-menu-gestao{
+    width: 100%;
+}
+.blueSisestar{
+    background-color: #004C99;
+}
+#sisestarTituloSite {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    
+    
+}
+
+
+
+#sisestarTituloSite{
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+#btnSuperiorBar{
+    padding: 1px;
+    color: black;   
+
+}
+.btnSuperiorBar a{
+    text-decoration: none;
+    margin: 0 15px 0 15px ;
+}
+#btnImprimir{
+    float: right;
+    margin-right: 0px;
+}
+
+#btnLogin{
+    float: right;
+    padding: 1px;
+
+}
+
+#filtroBusca{
+    margin-top: 20%;
+    margin-left:  10%;
+    width: 50%;
+
+}
+.formBusca{
+    float: right;
+}
+
+#pIdLogin{
+    padding: 5px;
+}
+#formLogin{
+    width: 250px;
+    margin-top: 15%;
+}
+.dadosNotificacao{
+    margin-left: 10px;
+    font-size: 28px;
+
+}
+#filtro{
+    float: right;
+    width: 45%;
+}
+#ver_notificacao{
+    width: 60%;
+    display: block;   
+}
+
+/*-------------------------------Tela movel ---------------*/
+.blueMovel{
+    background-color: #33B5E5;   
+    padding: 15px;    
+}
+#logoMovel{
+    color: black;
+    font-weight: bold;
+}
+.right-bar{
+    float: right;
+    text-decoration: none;
+    color: black;
+}
+
+
+#loginMovel{
+    background-image: none;
+    background-color: #33B5E5;
+    text-align: center;
+    margin-top: 20%;
+}
+#logoFormLoginMovel{
+    font-weight: bold;
+    font-size: 300%;
+}
+#formLoginMovel{
+    text-align: center;
+    margin-top: 20%;
+}
+.inputLoiginMovel{
+    width: 50%;
+    text-align: center;
+    margin-top: 5%;
+}
+#btInputLoiginMovel{
+    margin-top: 20%;
+    background-color: #999999;
+    color: white;
+    border: 1px solid #666666;
+}
+.inputNotificar{
+    width: 90%;
+}
+.notificar-tr-th{
+    font-size: 13px;
+    color: #999999;
+}
+.notificar-inline{
+    text-align: center;
+}
+.btnVerNotificacao{
+    padding: 0 5px 0 5px;
+}
+#imgPerfil{
+    width: 20%;
+    height: 20%;
+    float: right;
+}
+.imgModal{
+    width: 100%;
+}
+
+#btnNavPerfil{
+    padding:  1px 7px 1px 7px;
+    margin: 3px;
+    float: right;
+}
+#busca{
+    margin-left: 20%;
+
+}
+#ultimasNotificacoes{   
+    position: fixed;
+    right:  0;
+    top: 10%;
+    width: 20%;    
+
+}
+#ultimasNotificacoesMovel{    
+    width: 90%;    
+
+}
+.nomeDaTela{
+    float: right;
+    width: 65%;
+}
+.btnDentroImg{
+    width: 100%;
+}

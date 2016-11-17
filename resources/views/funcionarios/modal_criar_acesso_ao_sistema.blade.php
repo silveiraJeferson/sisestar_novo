@@ -1,0 +1,37 @@
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <h4 class="text-center">Novo Usuario do Sistema</h4>
+
+            <form class="form-horizontal" method="post" action="{{url('autenticar/store')}}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="id_func" value="{{ $funcionario->id}}">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Login</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="login" value="{{$funcionario->cpf}}"class="form-control" id="inputEmail3" placeholder="Login">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Senha</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="senha" value="{{$funcionario->cpf}}" class="form-control" id="inputPassword3" placeholder="Senha">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Repita a Senha</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="senha2" value="{{$funcionario->cpf}}" class="form-control" id="inputPassword3" placeholder="Repita a Senha">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                        <button  class="btn btn-danger">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
