@@ -1,0 +1,70 @@
+<?php $__env->startSection('content'); ?>
+<br/>
+<table class="table table-responsive table-striped table-hover">
+    <h1>Listagem dos funcionarios</h1>
+    <tr>
+
+    <p class="bg-info"><?php echo e($info); ?><span class="text-danger h5"><?php echo $funcionarios->total(); ?></span></p>    
+
+
+
+
+    <p class="formBusca">
+        <?php echo Form::open(['url' => '/funcionarios/busca']); ?>
+
+        <?php echo Form::text('param','',array('placeholder' => 'Pesquisar Funcionário')); ?>
+
+        <?php echo Form::submit('Buscar',array('class' => 'btn-primary')); ?>
+
+        <?php echo Form::close(); ?>
+
+
+    </p>
+</tr>
+<tr>
+    <th>#</th>
+    <th>Sobrenome</th>
+    <th>Nome</th>
+    <th>Matrícula</th>
+    <th></th>
+</tr>
+
+<?php foreach($funcionarios as $funcionario): ?>
+<tr>
+    <td><a href="/funcionarios/show/<?php echo e($funcionario->id); ?>">
+            
+            <img class="img-circle" style="width: 20px; height: 20px;"src="<?php echo e(url('imagem/arquivo/'.$funcionario->foto)); ?>" alt="" /></a>
+    </td>
+    <td class="text-uppercase"><?php echo e($funcionario->sobrenome); ?></td>
+    <td><?php echo e($funcionario->nome); ?></td>
+    <td><?php echo e($funcionario->matricula); ?></td>
+    <td><a class="glyphicon glyphicon-eye-open" href="/funcionarios/show/<?php echo e($funcionario->id); ?>"></a></td>
+      
+</tr>
+<?php endforeach; ?>
+</table>
+
+
+<div class="center-block text-center">
+    <?php echo $funcionarios->render(); ?>
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <?php foreach($funcionarios as $funcionario): ?>
+    <img class="img-circle" style="width: 30px; height: 30px;"src="<?php echo e(url('imagem/arquivo/'.$funcionario->foto)); ?>" alt="" />
+    <?php echo e($funcionario->nome); ?><br/>
+    <?php endforeach; ?>-->
+<?php echo $__env->make('layout.layoutGestao', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

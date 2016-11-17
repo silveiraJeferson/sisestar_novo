@@ -1,0 +1,33 @@
+<?php $__env->startSection('content'); ?>
+
+<br/>
+<a href="<?php echo e(url('/cargos')); ?>" class="btn btn-primary glyphicon glyphicon-arrow-left">Voltar</a>
+<a href="<?php echo e(url('/cargos/create')); ?>" class="btn btn-success glyphicon glyphicon-plus">Cargos</a>
+<h1>Cargos cadastrados:</h1>
+
+
+<table class="table">
+    <tr>           
+        <th>Cargo</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+    <?php $__empty_1 = true; foreach($lista as $cargo): $__empty_1 = false; ?>
+    <tr>        
+        <td><?php echo e($cargo->cargo); ?></td>
+        <td><a href="<?php echo e(url('/cargos/edit/'.$cargo->id)); ?>" class="text-primary glyphicon glyphicon-pencil"></a></td>
+        <td> <a href="<?php echo e(url('/cargos/destroy/'.$cargo->id)); ?>" class="glyphicon glyphicon-trash text-danger"></a></td>
+
+    </tr>
+    <?php endforeach; if ($__empty_1): ?>
+    <h3 class="text-danger">Nenhum Cargo cadastrado</h3>
+    <?php endif; ?>
+</table>
+
+
+
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.layoutGestao', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

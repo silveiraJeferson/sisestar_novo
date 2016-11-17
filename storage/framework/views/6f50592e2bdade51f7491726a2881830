@@ -1,0 +1,33 @@
+<?php $__env->startSection('content'); ?>
+<?php
+    if(@$agencia){
+        $id = $agencia[0]->id;
+    }
+
+
+?>
+
+<br/>
+<a href="<?php echo e(url('/valores')); ?>" class="btn btn-primary glyphicon glyphicon-arrow-left">Voltar</a>
+
+
+<?php if(@!$agencia): ?>
+<form method="post" action="<?php echo e(url('/agencia/store')); ?>">
+    <h1>Cadastro de Agência:</h1>
+<?php else: ?>
+<form method="post" action="<?php echo e(url('/agencia/update/'.$id)); ?>">
+    <h1>Alterar a Agência</h1>
+<?php endif; ?>
+
+    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+    <input type="text" name="nome"placeholder="Nome da Agencia" value="<?php echo e(@$agencia[0]->nome); ?>"><br/><br/>    
+    <input type="text" name="valor"placeholder="Valor da infração" value="<?php echo e(@$agencia[0]->valor); ?>"><br/><br/>
+    
+    
+    
+    <input type="submit" value="Gravar" class="btn btn-success" />
+</form>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.layoutGestao', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

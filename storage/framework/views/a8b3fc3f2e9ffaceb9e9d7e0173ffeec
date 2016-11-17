@@ -1,0 +1,27 @@
+<div class="modal fade modalMeu text-center" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content text-center center-block">
+            <h1>Alteração de Foto</h1>
+            <?php echo Form::open(['url' => '/funcionarios/foto','method'=>'POST', 'files'=>true]); ?>
+
+
+            <input type="hidden" name="id" value="<?php echo e($funcionario->id); ?>"/>
+            <?php echo Form::file('arquivo'); ?>
+
+
+            <?php echo Form::hidden('foto'); ?>
+
+            <div class="thumbnail">
+                <img class="thumb thumbnail"src="<?php echo e(url('/imagem/arquivo/'.$funcionario->foto)); ?>"/>
+                <span class="h1 text-info"><?php echo e($funcionario->foto); ?></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" value="Salvar" class="btn btn-primary"/>
+            </div>
+            <?php echo Form::close(); ?>
+
+        </div>
+    </div>
+</div>
+</div>

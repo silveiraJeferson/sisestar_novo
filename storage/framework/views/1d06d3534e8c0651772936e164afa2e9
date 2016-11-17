@@ -1,0 +1,40 @@
+<?php $__env->startSection('content'); ?>
+<br/>
+<a href="<?php echo e(url('/valores')); ?>" class="btn btn-primary glyphicon glyphicon-arrow-left"></a>
+<a href="<?php echo e(url('/agencia/create')); ?>" class="btn btn-success">Adicionar Agência</a>
+<hr/>
+<h1>Agencias cadastradas: <?php echo e($lista->total()); ?></h1>
+<hr/>
+<table class="table table-responsive">
+    <tr>
+        <th>Órgão</th>
+        <th></th>
+    </tr>
+    
+    
+    
+    
+    
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php $__empty_1 = true; foreach($lista as $agencia): $__empty_1 = false; ?>
+
+<li><?php echo e($agencia->nome); ?><a href="#" class="glyphicon glyphicon-pencil"></a></li><hr/>
+<?php endforeach; if ($__empty_1): ?>
+<h3 class="text-danger">Nenhuma agência cadastrada</h3>
+<?php endif; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.layoutGestao', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

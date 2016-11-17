@@ -1,0 +1,31 @@
+<?php $__env->startSection('content'); ?>
+
+<?php
+
+    if(@$status){
+        $value = $status[0]->status;
+        $id = $status[0]->id;
+    }else{
+        $value = "";
+    }
+?>
+<br/>
+
+
+<?php if(@!$status): ?>
+<form method="post" action="<?php echo e(url('/status/store')); ?>">
+    <h1>Nome do novo status</h1>
+<?php else: ?>
+<form method="post" action="<?php echo e(url('/status/update/'.$id)); ?>">
+    <h1>Alterar nome do status</h1>
+<?php endif; ?>
+
+    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+    <input type="text" name="status"placeholder="Status" value="<?php echo e($value); ?>"><br/><br/>
+    <input type="submit" value="Gravar" class="btn btn-success" />
+</form>
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.layoutGestao', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

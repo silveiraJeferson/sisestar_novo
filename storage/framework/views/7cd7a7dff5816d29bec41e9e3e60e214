@@ -1,0 +1,19 @@
+<?php $__env->startSection('content'); ?>
+<br/><br/>
+<!--Listo as ultimas notificações do dia-->
+<?php echo $__env->make('notificacao.ultimas_notificacoes', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<!--Input de busca-------------------------------------------------------------------------->
+<form id="busca" >
+    <input id="filtroBusca" class="form-control center-block" type="date" name="data_notificacao"/>
+    <br/>
+    <button  class="btn btn-success center-block"><a href="/notificacao/result">Buscar</a></button>
+</form>
+
+
+
+
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

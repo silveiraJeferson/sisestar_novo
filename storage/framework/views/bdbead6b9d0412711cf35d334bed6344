@@ -1,0 +1,79 @@
+<?php $__env->startSection('content'); ?>
+<br/>
+<?php foreach($consulta as $funcionario): ?>
+
+<?php
+//--------------------------------------calcular idade-----------------------
+//background da info do cargo
+?>
+<!--Botão para criar acesso do funcionário ao sistema-->
+<div class=" bg-info">
+    <?php if(!$login): ?>
+    <button style="margin-left:  80%" type="button" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-lg">Criar acesso ao Sistema</button>
+    <?php endif; ?>
+</div>
+
+
+
+
+<!--Div foto do perfil com botões de alteração de imagem e senha-->
+<div id="imgPerfil" class="thumbnail" >     
+    <button type="button"  class="thumbnail" data-toggle="modal" data-target="#myModal">
+        <img class="thumb thumbnail text-warning"src="<?php echo e(url('/imagem/arquivo/'.$funcionario->foto)); ?>"/>
+    </button>
+    <!-- -------------------mudar foto perfil -->
+    <button  data-toggle="modal" data-target=".modalMeu" class="center-block text-center btn-primary btnDentroImg" >Editar foto</button>
+    <!-- -------------------mudar senha -->
+    <button  class="center-block text-center btn-default btnDentroImg" data-toggle="modal" data-target=".modal_altera_senha">Alterar Senha</button>   
+</div>
+
+
+
+
+
+
+
+
+
+<h1 class="text-capitalize"><?php echo e($funcionario->nome); ?></h1>
+<h2 class="bg-success">Cargo: <?php echo e($funcionario->cargo); ?></h2>
+
+<table class="table">
+    <tr>
+        <th>Nome Completo:</th><td class="h3 text-capitalize"><?php echo e($funcionario->nome ." ". $funcionario->sobrenome); ?></td>        
+    </tr>
+    <tr>
+        <th>CPF:</th><td class="h3"><?php echo e($funcionario->cpf); ?></td>
+    </tr>
+    <tr>
+        <th>Matricula:</th><td class="h3"><?php echo e($funcionario->matricula); ?></td>
+    </tr>
+    <tr>
+        <th>Idade:</th><td class="h3"><?php echo e($funcionario->idade); ?> anos</td>
+    </tr>
+    <tr>
+        <th>Data de Nascimento:</th><td class="h3"><?php echo e($funcionario->data_nasc); ?></td>
+    </tr>
+</table>
+
+
+
+
+<!-----------------------------------------------------------modais da pagina-->
+<?php echo $__env->make('funcionarios.modal_altera_senha', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('funcionarios.modal_form_edit_foto', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('funcionarios.modal_foto_ampliada', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('funcionarios.modal_criar_acesso_ao_sistema', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php endforeach; ?>
+
+<h5>Histórico de login:</h5>
+<?php foreach($historico as $login): ?>
+<?php echo e($login->created_at); ?>
+
+<?php endforeach; ?>
+<?php $__env->stopSection(); ?>
+
+
+
+<?php echo $__env->make('layout.layoutGestao', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

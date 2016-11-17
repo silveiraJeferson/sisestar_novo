@@ -1,0 +1,37 @@
+<?php $__env->startSection('content'); ?>
+<br/>
+<a href="<?php echo e(url('/valores')); ?>" class="btn btn-primary glyphicon glyphicon-arrow-left">Voltar</a>
+
+<a href="<?php echo e(url('/agencia/create')); ?>" class="btn btn-success glyphicon glyphicon-plus">Adicionar</a>
+<hr/>
+<h1>Listagem de agencias com seus valores</h1>
+
+<table class="table table-hover">
+    <tr>
+        <th>Nome do Órgão</th>
+        <th>Valor da infração</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+
+    <?php $__empty_1 = true; foreach($lista as $agencia): $__empty_1 = false; ?>
+
+    <tr>
+        <td><?php echo e($agencia->nome); ?></td>
+        <td>R$ <?php echo e($agencia->valor); ?>,00</td>
+        <td><a href="<?php echo e(url('/agencia/edit/'.$agencia->id)); ?>" class="glyphicon glyphicon-pencil"></a></td>
+        <td><a href="<?php echo e(url('/agencia/destroy/'.$agencia->id)); ?>" class="glyphicon glyphicon-trash text-danger"></a></td>
+    </tr>
+    <?php endforeach; if ($__empty_1): ?>
+
+    <h3 class="text-danger">Nenhuma Agência cadastrada</h3>
+    <?php endif; ?>
+
+</table>
+
+
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.layoutGestao', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

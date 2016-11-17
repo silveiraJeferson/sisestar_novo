@@ -1,0 +1,28 @@
+<?php $__env->startSection('content'); ?>
+<br/>
+<h1>Status de notificações cadastrados:</h1>
+<h1><a href="<?php echo e(url('/status/create')); ?>"class="btn btn-success">Adicionar novo status</a></h1>
+
+<table class="table">
+    <tr>
+        <th>Código</th>    
+        <th>Nome</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+    <?php foreach($lista as $status): ?>
+    <tr>
+        <td><?php echo e($status->id); ?></td>
+        <td><?php echo e($status->status); ?></td>
+        <td><a href="<?php echo e(url('/status/edit/'.$status->id)); ?>" class="text-primary glyphicon glyphicon-pencil"></a></td>
+        <td> <a href="<?php echo e(url('/status/destroy/'.$status->id)); ?>" class="glyphicon glyphicon-trash text-danger"></a></td>
+
+    </tr>
+
+    <?php endforeach; ?>
+</table>
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.layoutGestao', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

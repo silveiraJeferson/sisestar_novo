@@ -1,0 +1,32 @@
+<?php $__env->startSection('content'); ?>
+<br/>
+<a href="<?php echo e(url('/cargos')); ?>" class="btn btn-primary glyphicon glyphicon-arrow-left">Voltar</a>
+<?php
+
+    if(@$cargo){
+        $value = $cargo[0]->cargo;
+        $id = $cargo[0]->id;
+    }else{
+        $value = "";
+    }
+?>
+<br/>
+
+
+<?php if(@!$cargo): ?>
+<form method="post" action="<?php echo e(url('/cargos/store')); ?>">
+    <h1>Nome do novo cargos</h1>
+<?php else: ?>
+<form method="post" action="<?php echo e(url('/cargos/update/'.$id)); ?>">
+    <h1>Alterar nome do cargo</h1>
+<?php endif; ?>
+
+    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+    <input type="text" name="cargo"placeholder="Status" value="<?php echo e($value); ?>"><br/><br/>
+    <input type="submit" value="Gravar" class="btn btn-success" />
+</form>
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.layoutGestao', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
