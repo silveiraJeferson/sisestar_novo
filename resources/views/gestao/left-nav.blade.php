@@ -19,6 +19,11 @@
                             <a href="{{url('/funcionarios/create')}}">Cadastrar</a>
                         </td>
                     </tr>                   
+                    <tr>
+                        <td>
+                            <a href="{{url('/funcionarios/inativos')}}">Inativos</a>
+                        </td>
+                    </tr>                   
                     
                 </table>
             </div>
@@ -62,6 +67,20 @@
                     <tr>
                         <td>
                             <a href="{{url('/cargos')}}">Listar</a>
+                        </td>
+                    </tr>                   
+                </table>
+            </div>
+        </div>
+        <a class="btn btn-warning btn-menu-gestao" role="button" data-toggle="collapse" href="#setores" aria-expanded="false" aria-controls="collapseExample">
+            Setores
+        </a>
+        <div class="collapse" id="setores">
+            <div class="well">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="{{url('/regiao')}}">Listar</a>
                         </td>
                     </tr>                   
                 </table>

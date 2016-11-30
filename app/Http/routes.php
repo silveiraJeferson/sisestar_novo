@@ -24,7 +24,9 @@ Route::controller('/valores', 'ValoresController');
 Route::controller('/agencia', 'AgenciaController');
 Route::controller('/cargos', 'CargosController');
 Route::controller('/funcionarios', 'FuncionariosController');
-
+Route::controller('/setores', 'SetorController');
+Route::controller('/regiao', 'RegiaoController');
+Route::controller('/logradouros', 'LogradouroController');
 
 
 Route::controller('/autenticar', 'LoginController');

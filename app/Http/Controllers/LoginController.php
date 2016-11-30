@@ -76,22 +76,34 @@ class LoginController extends Controller {
      */
     public function postStore(Request $request) {
 
+        $flag = false;
+
+
+
         //validar senhas iguais
         $dadosLogin = $request->all();
+        $flag = DB::table('logins')->where('func', $dadosLogin['id_func'])->get();
+
+
 
         $senha = sha1($dadosLogin['id_func'] . $dadosLogin['senha']);
         $dadosLogin['senha'] = $senha;
         $dadosLogin['func'] = $dadosLogin['id_func'];
         $login = new Login($dadosLogin);
-        $login->save();
+
 
         //-----------------------------adiciono usuario à tabela logon para saber seu status online
         $logon = new Logon();
         $logon->id_funcionario = $dadosLogin['id_func'];
         $logon->logado = false;
-        $logon->save();
+
         $id = $dadosLogin['id_func'];
-       return redirect("/funcionarios/show/$id");
+
+        if (!$flag) {
+            $login->save();
+            $logon->save();
+        }
+        return redirect("/funcionarios/show/$id");
     }
 
     /**
@@ -110,8 +122,11 @@ class LoginController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        //
+    public function getEdit($id) {
+        $funcionario = DB::table('funcionarios')->where('id', $id)->get();
+        $login = DB::table('logins')->where('func', $id)->get();
+        $token = $login[0]->senha;
+        return view('funcionarios.modal_altera_senha', compact('funcionario', 'token'));
     }
 
     /**
@@ -139,9 +154,40 @@ class LoginController extends Controller {
         $func = DB::table('funcionarios')->where('id', $id)->get();
         return view('gestao.cadastro_login', compact('func'));
     }
-    
-    public function getLogoff(){
+
+    public function getLogoff() {
         return view('public.construcao');
+    }
+
+    public function postConfirm(Request $request, $id) {
+        $teste = sha1($id . $request['senha']);
+        $consulta = DB::table('logins')->where('func', $id)->get();
+        if ($teste == $consulta[0]->senha) {
+            return view('funcionarios.altera_senha', compact($id));
+        } else {
+            $resp = new MsgResposta();
+            $resp->status = false;
+            $resp->msg = "A senha não confere";
+            //------------------------------------------------------
+            $consulta = DB::table('funcionarios')
+                            ->join('cargos', 'cargos.id', '=', 'funcionarios.id_cargo')
+                            ->where('funcionarios.id', $id)->get();
+            $login = DB::table('logons')->where("id_funcionario", $id)->get();
+            $consulta[0]->id = $id;
+            $calcula_idade = new DataController($consulta[0]->data_nasc);
+            $consulta[0]->idade = $calcula_idade->getIdade();
+
+            $historico = DB::table('logons')->where('id_funcionario', $id)->get();
+
+            return view('funcionarios.info_funcionario', compact('resp','consulta', 'login', 'historico'));
+            
+        }
+        //---------------------parei aqui -----------redirecionar para inserir nova senha
+        // 
+    }
+
+    public function postAltera_senha($id) {
+        return view('funcionarios.alteraSenha');
     }
 
 }

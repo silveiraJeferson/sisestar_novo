@@ -15,6 +15,7 @@ class CreateFuncionariosTable extends Migration
         Schema::create('funcionarios', function($table){
            $table->increments('id') ;
            $table->integer('id_cargo');
+           $table->boolean('visible');
            $table->string('nome', 50);
            $table->string('sobrenome', 50);
            $table->string('cpf', 11);

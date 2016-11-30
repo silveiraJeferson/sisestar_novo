@@ -14,11 +14,14 @@
         <th>Excluir</th>
     </tr>
     @forelse($lista as $cargo)
-    <tr>        
+    <tr>  
+        @if($cargo->cargo != 'Master')
         <td>{{$cargo->cargo}}</td>
         <td><a href="{{url('/cargos/edit/'.$cargo->id)}}" class="text-primary glyphicon glyphicon-pencil"></a></td>
-        <td> <a href="{{url('/cargos/destroy/'.$cargo->id)}}" class="glyphicon glyphicon-trash text-danger"></a></td>
 
+
+        <td> <a href="{{url('/cargos/destroy/'.$cargo->id)}}" class="glyphicon glyphicon-trash text-danger"></a></td>
+        @endif
     </tr>
     @empty
     <h3 class="text-danger">Nenhum Cargo cadastrado</h3>

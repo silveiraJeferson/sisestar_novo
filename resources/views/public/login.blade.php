@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </div>           
         <div class="input-group">
             <div class="input-group-addon glyphicon glyphicon-asterisk"></div>
-            <input type="text" class="form-control" id="exampleInputAmount" name="senha" placeholder="Senha">
+            <input type="password" class="form-control" id="exampleInputAmount" name="senha" placeholder="Senha">
         </div>
         <br/>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">

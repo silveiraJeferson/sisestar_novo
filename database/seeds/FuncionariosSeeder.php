@@ -19,6 +19,7 @@ class FuncionariosSeeder extends Seeder {
             $foto = "$a.jpg";
             Funcionario::create([
                 'id_cargo' => rand(1, 3),
+                'visible' => true,
                 'nome' => $faker->name,
                 'sobrenome' => $faker->lastName,
                 'cpf' => $faker->numberBetween($min = 000000000000, $max = 99999999999),

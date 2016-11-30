@@ -16,7 +16,7 @@ body{
 
 }
 .overflow{
-    max-height:550px;
+    max-height:400px;
     overflow-y:auto;
 }
 
@@ -78,8 +78,8 @@ body{
     text-decoration: none;
     color: white;
     font-weight: bold;
-    
-    
+
+
 }
 
 
@@ -229,4 +229,51 @@ body{
 }
 .btnDentroImg{
     width: 100%;
+}
+.formAlteraSenha{
+
+}
+.lista_de_setores{
+    margin-right: 5px;
+    float: left;
+    width: 49%;
+}
+#td_regiao{
+    width: 50%;
+
+}
+.btn-regioes{
+    width: 100%;
+}
+.btn-setor{
+    border: 2px solid black;
+    margin: 10px;
+    width: 25%;
+}
+
+.navbar_setores{
+    width: 83%;
+    position: fixed;
+}
+.div_index{
+    margin-top: 80px;
+}
+
+.div_navegacao_index{
+
+
+    padding: 20px 50px;
+}
+.div_navegacao_index:hover{
+    background-color: #33B5E5;
+    color:white;
+}
+.listagem_grande{
+    max-height:90%;
+    overflow-y:auto;
+}
+#form_busca{
+    position: fixed;
+    top:0;
+    right: 20%;
 }

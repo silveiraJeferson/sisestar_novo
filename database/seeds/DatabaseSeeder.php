@@ -23,10 +23,13 @@ class DatabaseSeeder extends Seeder {
         $this->call('IrregularidadesSeeder');
         $this->call('CargosSeeder');
         $this->call('Status_notificacaosSeeder');
-        
+        $this->call('MasterSeeder');
+        $this->call('LogradourosSeeder');
+        $this->call('SetoresSeeder');
+        $this->call('Logradouro_setorSeeder');
+        $this->call('RegiaoSeeder');
         //---------------------------dispensavel
         //$this->call('LogonSeeder');
-        
     }
 
 }
