@@ -16,7 +16,8 @@ class RegiaoSeeder extends Seeder {
 
         for ($i = 0; $i < 5; $i++) {
             Regiao::create([
-            'regiao' => $regiao[$i]
+            'regiao' => $regiao[$i],
+            'ativo' => true
             ]);
         }
 

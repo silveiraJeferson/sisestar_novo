@@ -1,4 +1,4 @@
-<select class="form-control" id="tipo" name="tipo">
+<select class="form-control" id="tipo" name="tipo"  >
     <option value="não informado">Selecione o tipo do Logradouro</option>
     <option value="Rua">Rua</option>
     <option value="Avenida">Avenida</option>

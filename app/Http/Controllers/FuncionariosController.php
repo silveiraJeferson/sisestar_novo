@@ -118,9 +118,7 @@ class FuncionariosController extends Controller {
     }
 
     public function postBusca(Request $request) {
-        if ($request->param == "") {
-            return $this->getFuncionarios();
-        }
+        
         $funcionarios = DB::table('funcionarios')->where('nome', 'ilike', "%$request->param%")
                 ->orWhere('sobrenome', 'ilike', "%$request->param%")
                 ->orWhere('matricula', 'ilike', "%$request->param%")

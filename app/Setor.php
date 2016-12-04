@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setor extends Model
 {
-     protected $fillable = ['numero', 'regiao','referencia'];
+     protected $fillable = ['numero', 'regiao','referencia','ativo'];
 }

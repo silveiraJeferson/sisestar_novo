@@ -10,13 +10,7 @@
     </div>
 
     <!--    Formulario para busca de logradouro-->
-    <form method="post" action="{{url('/logradouros/buscar')}}" id="form_busca" class="navbar-form">
-        <div class="form-group">
-            <input type="text" name="param_busca" size="50"class="form-control" placeholder="Buscar Logradouro">
-        </div>
-         <input  type="hidden" name="_token" value="{{ csrf_token() }}">
-        <button type="submit" class="btn btn-default">Buscar</button>
-    </form>  
+   
     <!--    Fim do formulário de busca-->
 
 
@@ -26,19 +20,42 @@
             <tr class="bg-info">
                 <th>Tipo</th>
                 <th>Nome</th>
+                @if(!@$flag)
                 <th>Setor</th>
                 <th>Região</th>
                 <th>Referência</th>
+                @else
+                <th></th>
+                <th>Editar</th>
+                <th></th>
+                @endif
             </tr>
 
             @forelse($lista as $logradouro)
-
+            
             <tr>
                 <td>{{$logradouro->tipo}}</td>
-                <td>{{$logradouro->nome}}</td>
+                <td><a href="{{url('/setores/show/'.@$logradouro->id_setor)}}">{{$logradouro->nome}}</a>
+                    
+                    @if(!$logradouro->ativo)
+                    <i class="bg-danger text-danger ">Inativo</i>
+                    @endif
+                </td>
+                @if(!@$flag)
                 <td>{{@$logradouro->id_setor}}</td>
                 <td>{{@$logradouro->regiao}}</td>
                 <td>{{@$logradouro->referencia}}</td>
+                @else
+                <td></td>
+                <td><a href="{{url('logradouros/edit/'.$logradouro->id)}}" class="glyphicon glyphicon-pencil"></a></td>
+                    @if(!$logradouro->ativo)
+                        <td><a href="{{url('logradouros/ativar/'.$logradouro->id)}}" class="glyphicon glyphicon-ok text-success" data-toggle="tooltip" data-placement="top" title="Ativar"></a></td>
+                        @else
+                            <td>                            
+                               <a href="{{url('logradouros/destroy/'.$logradouro->id)}}" class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Excluir"></a>
+                            </td>
+                        @endif
+                    @endif
             </tr>
             @empty
             <h1 class="text-danger">Nenhum Logradouro Cadastrado</h1>

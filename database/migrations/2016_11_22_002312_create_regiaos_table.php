@@ -15,6 +15,7 @@ class CreateRegiaosTable extends Migration {
 
             $table->increments('id');
             $table->string('regiao');
+            $table->boolean('ativo');
             $table->timestamps();
         });
     }

@@ -7,40 +7,40 @@
 
 
 
-
-
-<!--Botão para criar acesso do funcionário ao sistema-->
-<div class=" bg-info">
-    @if(!$obj->valor['login'])
-    <button style="margin-left:  80%" type="button" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-lg">Criar acesso ao Sistema</button>
-    @endif
-</div>
-
-
-
-
-<!--Div foto do perfil com botões de alteração de imagem e senha-->
-<div id="imgPerfil" class="thumbnail" >     
-    <button type="button"  class="thumbnail" data-toggle="modal" data-target="#myModal">
-        <img class="thumb thumbnail text-warning"src="{{url('/imagem/arquivo/'.$funcionario->foto)}}"/>
-        @if(!$funcionario->visible)
-        <span class="h5 text-danger">Funcionario Inativo</span>
-        @else
-        <span class="h5 text-primary">Ativo</span>
+@include('funcionarios.navbar_funcionarios')
+<div class="div_index">
+    <!--Botão para criar acesso do funcionário ao sistema-->
+    <div class=" bg-info">
+        @if(!$obj->valor['login'])
+        <button style="margin-left:  80%" type="button" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-lg">Criar acesso ao Sistema</button>
         @endif
-    </button>
-    @if(!$funcionario->visible)
-    <a href="{{url("funcionarios/up/".$funcionario->id)}}" class="center-block text-center btnDentroImg  btn-success " >Ativar</a>
-    @endif
-    <!-- -------------------mudar foto perfil -->
-    <button  data-toggle="modal" data-target=".modalMeu" class="center-block text-center btn-primary btnDentroImg" >Editar foto</button>
-    <!-- -------------------mudar senha -->
+    </div>
 
-    <button  class="center-block text-center btn-default btnDentroImg" data-toggle="modal" data-target=".confirma_senha">Alterar Senha</button>  
-    <span class="text-danger" id="msgErro"></span>
 
+
+
+    <!--Div foto do perfil com botões de alteração de imagem e senha-->
+    <div id="imgPerfil" class="thumbnail" >     
+        <button type="button"  class="thumbnail" data-toggle="modal" data-target="#myModal">
+            <img class="thumb thumbnail text-warning"src="{{url('/imagem/arquivo/'.$funcionario->foto)}}"/>
+            @if(!$funcionario->visible)
+            <span class="h5 text-danger">Funcionario Inativo</span>
+            @else
+            <span class="h5 text-primary">Ativo</span>
+            @endif
+        </button>
+        @if(!$funcionario->visible)
+        <a href="{{url("funcionarios/up/".$funcionario->id)}}" class="center-block text-center btnDentroImg  btn-success " >Ativar</a>
+        @endif
+        <!-- -------------------mudar foto perfil -->
+        <button  data-toggle="modal" data-target=".modalMeu" class="center-block text-center btn-primary btnDentroImg" >Editar foto</button>
+        <!-- -------------------mudar senha -->
+
+        <button  class="center-block text-center btn-default btnDentroImg" data-toggle="modal" data-target=".confirma_senha">Alterar Senha</button>  
+        <span class="text-danger" id="msgErro"></span>
+
+    </div>
 </div>
-
 
 <!--
 if($resp)
@@ -65,8 +65,7 @@ endif-->
 
 
 
-<a href="{{url('/funcionarios')}}" class="btn btn-info">Inicio</a>
-<a href='{{url("funcionarios/edit/".$funcionario->id)}}' class="btn btn-info">Editar dados</a>
+
 
 
 

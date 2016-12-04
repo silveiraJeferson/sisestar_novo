@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Regiao extends Model
 {
-     protected $fillable = ['regiao'];
+     protected $fillable = ['regiao','ativo'];
 }

@@ -18,6 +18,7 @@ class CreateSetorsTable extends Migration
             $table->integer('numero');
             $table->integer('regiao');
             $table->string('referencia');
+            $table->boolean('ativo');
             $table->timestamps();
         });
     }

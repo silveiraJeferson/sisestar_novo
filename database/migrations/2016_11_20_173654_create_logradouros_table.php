@@ -17,6 +17,7 @@ class CreateLogradourosTable extends Migration
             $table->increments('id');
             $table->string('tipo');
             $table->string('nome');
+            $table->boolean('ativo');
             $table->timestamps();
         });
     }

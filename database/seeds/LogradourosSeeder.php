@@ -17,9 +17,11 @@ class LogradourosSeeder extends Seeder
         $faker = Faker::create();
         $tipos = ['Rua', 'Praça', 'Avenida', 'Alameda', 'Travessa'];
         foreach (range(1, 250) as $i){
+            $ativo = rand(0, 1);
             Logradouro::create([
                'tipo' => $tipos[rand(0, 4)] ,
-                'nome' => $faker->streetName
+                'nome' => $faker->streetName,
+                'ativo' => $ativo
             ]);
         }
         

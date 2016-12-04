@@ -26,7 +26,8 @@ class SetoresSeeder extends Seeder {
             Setor::create([
                 'numero' => $i,
                 'regiao' => rand(1, 5),
-                'referencia' => $faker->streetName
+                'referencia' => $faker->streetName,
+                'ativo' => rand(0, 1)
             ]);
             $cont++;
             if ($cont == 5) {

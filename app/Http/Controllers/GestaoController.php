@@ -18,7 +18,7 @@ class GestaoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function getIndex() {
-        return view('gestao.inicio_gestao');
+        return redirect('/setores/todos-os-setores');
     }
 
     //--------------------------------------listagem de todos os funcionarios----------

@@ -21,9 +21,17 @@ class RegiaoController extends Controller {
     
     
     public function getTodasAsRegioes(){
-        $regioes = DB::table('regiaos')->paginate(7);
-        return view('regiao.lista_regioes', compact('regioes'));
+        $regioes = DB::table('regiaos')->where('ativo', true)->paginate(7);
+        $ativo = true;
+        return view('regiao.lista_regioes', compact('regioes','ativo'));
     }
+    public function getInativas(){
+        $regioes = DB::table('regiaos')->where('ativo', false)->paginate(7);
+        $ativo = false;
+        return view('regiao.lista_regioes', compact('regioes','ativo'));
+    }
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -41,15 +49,23 @@ class RegiaoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function postStore(Request $request) {
-        $dadosForm = $request->all();
-        
-        $novaRegiao = new Regiao($dadosForm);
-        $novaRegiao->save();
-        
-        return redirect('/regiao');
+        $dadosForm = $request->all();        
+        $id = Regiao::create($dadosForm)->id;       
+        return redirect('/regiao/show/'.$id);
         
         
     }
+    
+    public function postBuscar(Request $request){
+        $param_busca = $request['param_busca'];
+        
+        $regioes = DB::table('regiaos')->where('regiao', 'ilike', "%$param_busca%")->paginate(7);
+       
+        return view('regiao.lista_regioes', compact('regioes'));
+        
+        
+    }
+    
 
     /**
      * Display the specified resource.
@@ -63,7 +79,9 @@ class RegiaoController extends Controller {
         $setores = DB::table('setors')->where('regiao',$id)->paginate(10);
         $setores->regiao = $regiao[0]->regiao;
         $setores->id_regiao = $regiao[0]->id;
-        return view('regiao.regiao_setores',  compact('setores'));
+        $ativo = $regiao[0]->ativo; 
+        $edit = true;
+        return view('regiao.regiao_setores',  compact('setores','ativo','edit'));
     }
 
     /**
@@ -98,8 +116,13 @@ class RegiaoController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        //
+    public function getDestroy($id) {
+        DB::table('regiaos')->where('id',$id)->update(['ativo'=>false]);
+        return redirect('/regiao');
+    }
+    public function getAtivar($id) {
+        DB::table('regiaos')->where('id',$id)->update(['ativo'=>true]);
+        return redirect('/regiao');
     }
 
 }

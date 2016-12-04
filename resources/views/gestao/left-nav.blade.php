@@ -80,7 +80,26 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <a href="{{url('/regiao')}}">Listar</a>
+                            <a href="{{url('/setores/todos-os-setores')}}">Listar</a>
+                        </td>
+                    </tr>                   
+                </table>
+            </div>
+        </div>
+        <a class="btn btn-warning btn-menu-gestao" role="button" data-toggle="collapse" href="#regiao" aria-expanded="false" aria-controls="collapseExample">
+            Regiões
+        </a>
+        <div class="collapse" id="regiao">
+            <div class="well">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="{{url('/regiao')}}">Ver Regiões</a>
+                        </td>
+                    </tr>                   
+                    <tr>
+                        <td>
+                            <a href="{{url('/regiao/inativas')}}">Ver Inativas</a>
                         </td>
                     </tr>                   
                 </table>
