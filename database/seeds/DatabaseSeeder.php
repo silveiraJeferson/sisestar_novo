@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder {
 
         Model::reguard();
         //-----------------------------dispensavel---------
-        //$this->call('FuncionariosSeeder');
-        //$this->call('NotificacaoSeeder');
+        $this->call('FuncionariosSeeder');
+        $this->call('NotificacaoSeeder');
         //--------------------------------------
         $this->call('IrregularidadesSeeder');
         $this->call('CargosSeeder');

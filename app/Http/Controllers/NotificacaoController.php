@@ -50,8 +50,23 @@ class NotificacaoController extends Controller {
 
     //-----------------------------------chamado da view para notificar um veiculo---------------------------------------
     public function getNotificar() {
+        
         $irregularidades = DB::table('irregularidades')->get();
-        return view('notificacao.notificar', compact('irregularidades'));
+        $agencias = DB::table('agencias')->orderBy('nome')->get();
+        $logradouros = DB::table('logradouro_setors')
+                ->join('logradouros', 'logradouro_setors.id_logradouro', '=', 'logradouros.id')
+                ->where('logradouro_setors.id_setor',session('id_setor'))
+                ->get();
+        $notificacao_num = DB::table('notificacaos')->max('id');
+        
+        
+        $obj = new \stdClass();
+        
+        $obj->irregularidades = $irregularidades;
+        $obj->agencias = $agencias;
+        $obj->logradouros = $logradouros;
+               
+        return view('notificacao.notificar', compact('obj'));
     }
 
 //-----------------------------------chamado da view para regularização de um veiculo---------------------------------------
@@ -74,8 +89,11 @@ class NotificacaoController extends Controller {
     //------------------------------------------metodos posts -------------------------
     //------------------------------------------------notificando um veiculo--------------------------
     public function postNotificar(Request $request) {
-
+        session(['logradouro'=> $request['local']]);
         $dadosDoFormulario = $request->all();
+        $num_notifi = DB::table('notificacaos')->max('id');
+        $dadosDoFormulario['num_notificacao'] = $num_notifi;
+        
         $notificacao = new Notificacao($dadosDoFormulario);
         $notificacao->save();
         //nesse ponto gerar arquivo txt para impressão

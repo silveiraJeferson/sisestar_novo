@@ -24,8 +24,16 @@
                 <form method="post" action="/autenticar/login">
 
                     <input type="text" class="form-control center-block inputLoiginMovel" name="login" id="" placeholder="Login">
-                    <input type="text" class="form-control  center-block inputLoiginMovel" name="senha" id="" placeholder="Senha">
+                    <input type="password" class="form-control  center-block inputLoiginMovel" name="senha" id="" placeholder="Senha">
+
+                    <input type="hidden" name="tipo_login" value="movel">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    @if(@$resp)
+                    <br/>
+                    <span class="text-danger center-block text-center">
+                        {{$resp->msg}}
+                    </span>
+                    @endif
                     <button id="btInputLoiginMovel"type="submit" class="btn  center-block inputLoiginMovel">LogOn</button>
                 </form>
             </div>

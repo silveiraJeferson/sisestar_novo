@@ -1,4 +1,4 @@
-<div id="ultimasNotificacoes" class="thumbnail hidden-xs overflow">
+<div  class="thumbnail hidden-xs overflow">
     <div class="bg-primary fixed-top">
         <p class="h4 text-center text-bold">Notificações de Hoje<br/>{{date("d/m/Y")}}</p>
     </div>

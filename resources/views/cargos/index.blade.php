@@ -15,12 +15,16 @@
     </tr>
     @forelse($lista as $cargo)
     <tr>  
-        @if($cargo->cargo != 'Master')
+        @if($cargo->id > 0 &&  $cargo->id < 4)
+        <td>{{$cargo->cargo}}</td>
+        <td></td>
+        <td></td>
+        @else
         <td>{{$cargo->cargo}}</td>
         <td><a href="{{url('/cargos/edit/'.$cargo->id)}}" class="text-primary glyphicon glyphicon-pencil"></a></td>
-
-
         <td> <a href="{{url('/cargos/destroy/'.$cargo->id)}}" class="glyphicon glyphicon-trash text-danger"></a></td>
+
+
         @endif
     </tr>
     @empty

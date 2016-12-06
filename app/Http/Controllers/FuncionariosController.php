@@ -61,16 +61,15 @@ class FuncionariosController extends Controller {
                 $dadosFormulario['data_nasc'] = date('d/m/Y', strtotime($dadosFormulario['data_nasc']));
                 $dadosFormulario["foto"] = $dadosFormulario["matricula"] . $dadosFormulario["cpf"] . ".jpg";
 
-
-                $cadastro = new Funcionario($dadosFormulario);
+                
+                
+                $id = Funcionario::create($dadosFormulario)->id;                
                 $file->move('app/public', $dadosFormulario["foto"]);
-                $cadastro->save();
-
-                $id = DB::table('funcionarios')->max('id');
+                
             }
         }
 
-
+        
 
 
         return redirect("/funcionarios/show/$id");

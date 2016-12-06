@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------botão notificação----------------------------------->
-
+            @if(session('logado'))
             <button id="btnSuperiorBar" class="btn btn-default dropdown hidden-xs btnSuperiorBar">
                 <a class="dropdown-toggle glyphicon glyphicon-copy" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
                     Notificações <span class="caret"></span>
@@ -22,27 +22,29 @@
                 </ul>
             </button>
             <!----------------------------------------------------------------------botões para gestão de funcionários----------------------------------->
-
+            @endif
                 
             
 <!--            botão de logoff-->
+            @if(session('logado'))
             <button id="btnLogin" class="btn btn-warning btnSuperiorBar ">
-                <a class="glyphicon glyphicon-off hidden-xs" href="{{url('/autenticar/logoff')}}"></a>
+                <a class="glyphicon glyphicon-off" href="{{url('/autenticar/logoff')}}"></a>
             </button>
+            @endif
 
-
-
+            @if(!session('logado'))
             <button id="btnLogin" class="btn btn-default btnSuperiorBar hidden-xs">
                 <a class="glyphicon glyphicon-user" href="{{url('/login')}}">Login</a>
             </button>
             <button id="btnLogin" class="btn btn-default btnSuperiorBar visible-xs">
-                <a class="glyphicon glyphicon-user" href="{{url('/loginmovel')}}"></a>
+                <a class="glyphicon glyphicon-user" href="{{url('/login')}}"></a>
             </button>
-
+            @endif
 
         </div>
 
         <!----------------------------------------------------------------------botões para dispositivos pequenos----------------------------------->
+        @if(session('logado'))
         <div id="btnTelaPequena"class=" center-block text-center">
             <button id="btnSuperiorBar" class="btn btn-default dropdown visible-xs-inline-block btnSuperiorBar">
                 <a class="dropdown-toggle glyphicon glyphicon-copy" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
@@ -66,3 +68,4 @@
             </button>
 
         </div>
+        @endif

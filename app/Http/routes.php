@@ -38,6 +38,11 @@ Route::get('imagem/arquivo/{nome}', [
     'uses' => 'ImagemController@getImagemFile'
 ]);
 
+ 
+   
+
+
+
 
 
 

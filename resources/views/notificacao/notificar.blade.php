@@ -1,118 +1,138 @@
 @extends('layout.movel')
 @section('content')
-<form method="post" action="/notificacao/notificar">
-    <span class="h4 center-block text-center">Notificação de Irregularidade</span>
 
-    <table class=" notificar">
-        <tr class="notificar-tr-th">
-            <th class="col-xs-6 col-md-4 text-center">Placa</th>
-            <th class="col-xs-6 col-md-4 text-center">País</th>
-            <th class="col-xs-6 col-md-4 text-center">Notificação</th>
-        </tr>
-        <tr>
-            <td class="text-center"><input class="inputNotificar" type="text" name="placa" placeholder="..."/></td>
-            <td class="text-center"><input class="inputNotificar" type="text" name="pais" placeholder="..."/></td>
-            <td class="text-center"><input class="inputNotificar" type="number" name="num_notificacao" placeholder="..."/></td>
-        </tr>
+<div class="div_index">
+    <form method="post" action="/notificacao/notificar">
+        <span class="h4 center-block text-center">Notificação de Irregularidade</span>
+        <i>Data: {{date("d/m/Y")}}</i>
+        <hr/>
+        <i class="center-block text-center text-primary">Dados do Veículo</i>
+        <table class=" notificar">
+            <tr >
+                <th class="col-xs-6 col-md-4 text-center">Placa</th>
+                <th class="col-xs-6 col-md-4 text-center">País</th>
 
-    </table>
-    <!----------------------------------------inline marca/ modelo--------------------------------------------------->
-    <p class="">
-    <div class="notificar-tr-th notificar-inline col-xs-4 col-md-12">Marca / Modelo</div>
-    <div class="col-xs-4 col-md-3"><input class="inputNotificar" type="text" name="marca" placeholder="..."/></div>
-    <div class="col-xs-4 col-md-3"><input class="inputNotificar" type="text" name="modelo" placeholder="..."/></div>
-</p>
-<!--------------------------------------------------------------------------------------------------->
-<table class=" notificar">
-    <tr class="notificar-tr-th">
-        <th class="col-xs-3 col-md-4 text-center">Data</th>
-        <th class="col-xs-2 col-md-4 text-center">Hora</th>
-        <th class="col-xs-6 col-md-4 text-center">Cartão nº</th>
-    </tr>
-    <tr>
-        <td class="text-center">{{date("d/m/Y")}}</td>
-        <td class="text-center">{{date("H:i:s")}}</td>
-        <td class="text-center"><input class="inputNotificar" type="number" name="num_cartao" placeholder="..."/></td>
-    </tr>
-</table>
-<!----------------------------------------inline numero--------------------------------------------------->
-<p>
-<div class="notificar-tr-th notificar-inline col-xs-2 col-md-3"><a href="#" class="glyphicon glyphicon-map-marker">Local</a></div>
-<div class="col-xs-10 col-md-3"><input class="inputNotificar" type="text" name="local" placeholder="..."/></div>
+            </tr>
+            <tr>
+                <td class=""><input class="inputNotificar form-control" type="text" name="placa" placeholder="..."/></td>
+                <td class="text-center"><input class="inputNotificar form-control" type="text" name="pais" placeholder="..."/></td>
 
-</p>
-<!------------------------------------------inline numero--------------------------------------------------------->
-<br/>
-<p>
-<div class="notificar-tr-th notificar-inline col-xs-2 col-md-3">Número</div>
-<div class="col-xs-8 col-md-3"><input class="inputNotificar" type="number" name="numero" placeholder="..."/></div>
-</p>
-<br/><br/>
-<!-------------------------------------------usar dados do banco de dados---------------->
-<span class="h4">Irregularidade</span><br/>
-@foreach($irregularidades as $irregularidade)
-<input type="radio" name="irregularidade" value="{{$irregularidade->codigo}}"/>{{$irregularidade->nome}}<br/>
-@endforeach
-<textarea  class="col-xs-12 col-md-3" name="observacao"></textarea>
+            </tr>
 
-<!------------------------------------------------------------------------------------------>
-<table class=" notificar">
-    <tr class="notificar-tr-th">
-        <th class="col-xs-4 col-md-4 text-center">Regularizar até</th>
-        <th class="col-xs-4 col-md-4 text-center">Valor AMTT</th>
-        <th class="col-xs-4 col-md-4 text-center">Valor Detran</th>
-    </tr>
-    <tr>
-        <td class="text-center"><span class="">15/08/2016</span></td>
-        <td class="text-center"><span class="">R$ 20,00</span></td>
-        <td class="text-center"><span class="">R$ 159,00</span></td>
-    </tr>
-</table>
-<!------------------------------------------------------------------------------------------>
-<table class=" notificar">
-    <tr class="notificar-tr-th">
-        <th class="col-xs-4 col-md-4 text-center">Rubrica do Agente</th>
-        <th class="col-xs-4 col-md-4 text-center">Matricula</th>
-        <th class="col-xs-4 col-md-4 text-center">Setor</th>
-    </tr>
-    <br/>
-    <tr>
-        <td class="text-center"><span >_____________</span></td>
-        <td class="text-center"><span class="text-center">8888888</span></td>
-        <td class="text-center"><span class="">9</span></td>
-    </tr>
-</table>
-<br/>
-<input type="hidden" name="data" value="{{date("d/m/Y")}}"/>
-<input type="hidden" name="hora" value="{{date("H:i:s")}}"/>
-<input type="hidden" name="data_lim_regularizacao" value="R$ 20,00"/>
-<input type="hidden" name="valor_amtt" value="20"/>
-<input type="hidden" name="valor_detran" value="159"/>
-<input type="hidden" name="num_agente" value="9"/>
-<input type="hidden" name="setor" value="9"/>
-<input type="hidden" name="status" value="1"/>
-<input type="hidden" name="_token" value="{{ csrf_token() }}">
+        </table>
+        <!----------------------------------------inline marca/ modelo--------------------------------------------------->
+        <br/>
+        <p>
+            Marca: <input class="inputNotificarInteiro form-control" type="text" name="marca" placeholder="Marca..."/>
+        </p>
+        <p>
+
+            Modelo <input class="inputNotificarInteiro form-control" type="text" name="modelo" placeholder="Modelo..."/>
+        </p>
+        <div class="text-center"></div>
 
 
-<button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">Notificar</button>
+        <!--------------------------------------------------------------------------------------------------->
+        <hr/>
+        <!----------------------------------------inline numero--------------------------------------------------->
+        <i class="center-block text-center text-primary">Endereço</i>
+        <i>Logradouro</i>
 
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <span class="h3 text-center center-block">Emitir notificação?</span>
-            <div class="">
-                <input style="margin-left: 20%;" type="submit" value="Sim" class="btn btn-primary"/>        
-                <button style="float: right; margin-right: 20%;" type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+        @include('notificacao.select_logradouros')
+        <i>Número</i>
+        <div class="col-md-4"><input class=" form-control col-md-4" type="number" name="numero" placeholder="..."/></div>
+        <hr/>
+
+
+        Número do Cartão, se houver
+        <input class="inputNotificarInteiro form-control" type="number" value="0" name="num_cartao" placeholder="..."/>
+        <hr/>
+
+
+
+
+
+
+
+
+
+        <!------------------------------------------inline numero--------------------------------------------------------->
+
+
+        <!-------------------------------------------usar dados do banco de dados---------------->
+        <i class="center-block text-center text-primary">Irregularidade</i><br/>
+
+        @foreach($obj->irregularidades as $irregularidade)
+        <input type="radio" name="irregularidade" value="{{$irregularidade->codigo}}"/>{{$irregularidade->nome}}<br/><br/>
+        @endforeach
+        <textarea  class="col-xs-12 col-md-3" name="observacao"></textarea>
+
+        <!------------------------------------------------------------------------------------------>
+        <table class=" notificar">
+            <tr class="notificar-tr-th">
+                <th class="col-xs-4 col-md-4 text-center">Regularizar até</th>
+
+                @foreach($obj->agencias as $agencia)
+                <th class="col-xs-4 col-md-4 text-center">Valor {{$agencia->nome}}</th>        
+                @endforeach
+
+            </tr>
+            <?php $timestamp = strtotime("+15 days"); ?>
+            <tr>
+                <td class="text-center"><span class="">{{date('d/m/Y', $timestamp)}}</span></td>
+                @foreach($obj->agencias as $agencia)
+                <td class="text-center"><span class="">R$ {{$agencia->valor}},00</span></td>
+
+                @endforeach
+
+            </tr>
+        </table>
+        <!------------------------------------------------------------------------------------------>
+        <table class=" notificar">
+            <tr class="notificar-tr-th">
+                <th class="col-xs-4 col-md-4 text-center">Rubrica do Agente</th>
+                <th class="col-xs-4 col-md-4 text-center">Matricula</th>
+                <th class="col-xs-4 col-md-4 text-center">Setor</th>
+            </tr>
+            <br/>
+            <tr>
+                <td class="text-center"><span >_____________</span></td>
+                <td class="text-center"><span class="text-center">{{session('matricula')}}</span></td>
+                <td class="text-center"><span class="">{{session('id_setor')}}</span></td>
+            </tr>
+        </table>
+        <br/>
+
+        <input type="hidden" name="data" value="{{date("d/m/Y")}}"/>
+        <input type="hidden" name="hora" value="{{date("H:i:s")}}"/>
+        <input type="hidden" name="data_lim_regularizacao" value="{{date('d/m/Y', $timestamp)}}"/>
+        <input type="hidden" name="valor_amtt" value="20"/>
+        <input type="hidden" name="valor_detran" value="159"/>
+        <input type="hidden" name="num_agente" value="{{session('matricula')}}"/>
+        <input type="hidden" name="setor" value="{{session('id_setor')}}"/>
+        <input type="hidden" name="status" value="1"/>
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">Notificar</button>
+
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <span class="h3 text-center center-block">Emitir notificação?</span>
+                    <div class="">
+                        <input style="margin-left: 20%;" type="submit" value="Sim" class="btn btn-primary"/>        
+                        <button style="float: right; margin-right: 20%;" type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                    </div>
+
+                </div>
             </div>
-
         </div>
-    </div>
+
+    </form>
+
+
 </div>
-
-</form>
-
-
-
 
 <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

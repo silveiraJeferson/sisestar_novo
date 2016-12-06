@@ -23,40 +23,55 @@ class LoginController extends Controller {
     }
 
     public function postLogin(Request $request) {
+        if ($request['tipo_login'] === 'movel') {
+            $pag = 'loginmovel';
+        } else {
+            $pag = 'login';
+        }
 
         $obj = DB::table('logins')->where('login', $request->login)->get();
-        $senhaTeste = $obj[0]->func . $request->senha;
-        $senhaInformada = sha1($senhaTeste);
-        if ($senhaInformada === $obj[0]->senha) {
-            //$resp = 'certo';
-            $funcionario = DB::table('funcionarios')->where('id', $obj[0]->func)->get();
-            $resp = $funcionario;
-            //----obs: id agente=1, adm=2, master=3;
-            DB::table('logons')->where('id_funcionario', $funcionario[0]->id)
-                    ->update(['logado' => true]);
-            switch ($funcionario[0]->id_cargo) {
-                case 1:
-                    return redirect('/notificacao/notificar');
-                    break;
-                case 2:
-                    return redirect('/notificacao/data');
-                    break;
-                case 3:
-                    return redirect('/master');
-                    break;
-                default:
-                    return redirect('/');
-                    break;
-            }
-        } else {
-            //$resp = 'errado';
+        if (!$obj) {
             $resp = new MsgResposta();
             $resp->status = false;
             $resp->msg = "Login ou senha incorreto!";
+            return view("public.$pag", compact('resp'));
+        } else {
+            $senhaTeste = $obj[0]->func . $request->senha;
+            $senhaInformada = sha1($senhaTeste);
+            if ($senhaInformada === $obj[0]->senha) {
+                session(['logado'=>true]);
+                //$resp = 'certo';
+                $funcionario = DB::table('funcionarios')->where('id', $obj[0]->func)->get();
+                session(['id_funcionario' => $funcionario[0]->id]);
+                session(['matricula' => $funcionario[0]->matricula]);
+                
+                $resp = $funcionario;
+                
+                //----obs: id agente=1, adm=2, master=3;
+                DB::table('logons')->where('id_funcionario', $funcionario[0]->id)
+                        ->update(['logado' => true]);
+                switch ($funcionario[0]->id_cargo) {
+                    case 1:
+                        return view('notificacao.select_setor');
+                        break;
+                    case 2:
+                        return redirect('/notificacao/data');
+                        break;
+                    case 3:
+                        return redirect('/master');
+                        break;
+                    default:
+                        return redirect('/');
+                        break;
+                }
+            } else {
+                //$resp = 'errado';
+                $resp = new MsgResposta();
+                $resp->status = false;
+                $resp->msg = "Login ou senha incorreto!";
+            }
+            return view("public.$pag", compact('resp'));
         }
-
-
-        return view('public.teste', compact('resp'));
     }
 
     /**
@@ -66,6 +81,10 @@ class LoginController extends Controller {
      */
     public function create() {
         //
+    }
+    
+    public function getSelect_setor(){
+        return view('notificacao.select_setor');
     }
 
     /**
@@ -156,7 +175,8 @@ class LoginController extends Controller {
     }
 
     public function getLogoff() {
-        return view('public.construcao');
+        session()->flush();
+        return redirect('/');
     }
 
     public function postConfirm(Request $request, $id) {
@@ -179,8 +199,7 @@ class LoginController extends Controller {
 
             $historico = DB::table('logons')->where('id_funcionario', $id)->get();
 
-            return view('funcionarios.info_funcionario', compact('resp','consulta', 'login', 'historico'));
-            
+            return view('funcionarios.info_funcionario', compact('resp', 'consulta', 'login', 'historico'));
         }
         //---------------------parei aqui -----------redirecionar para inserir nova senha
         // 
@@ -188,6 +207,27 @@ class LoginController extends Controller {
 
     public function postAltera_senha($id) {
         return view('funcionarios.alteraSenha');
+    }
+    
+    public function getRegioes(){
+        $regioes = DB::table('regiaos')->orderBy('regiao')->get();
+        return view('notificacao.select_setor', compact('regioes'));
+    }
+    public function getSetores($id){
+        $setores = DB::table('setors')->where('regiao',$id)->orderBy('numero')->get();
+        return view('notificacao.select_setor', compact('setores'));
+    }
+    
+    public function getDefineSetor(Request $request){
+        if(DB::table('setors')->where('numero',$request['setor'])->get()){
+            session(['id_setor' => $request['setor']]);
+            return redirect('/notificacao/notificar');
+        }else{
+            $msg = "Setor inválido, por favor digite um setor válido";
+            return view('notificacao.select_setor', compact('msg'));
+        }
+        
+        
     }
 
 }

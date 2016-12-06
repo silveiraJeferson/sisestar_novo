@@ -19,12 +19,20 @@
     </head>
     <body>
         <div class="container">
-            <div id="superior-bar " class="blueMovel ">
-                <span id="logoMovel">SisEstar</span>
-                <a href="#" class="glyphicon glyphicon-search right-bar">Regularizar</a>
+            <div id="superior-bar " class="blueMovel  ">
+                <a href="{{url('/')}}"><img class="imgLogo"src="{{url('/imagem/arquivo/icon-estacionamento-infra_2.png')}}"/>
+                    <span id="sisestarTituloSite">SisEstaR</span>
+                </a>
+
+                @if(session('logado'))
+                <button id="btnLogin" class="btn btn-warning btnSuperiorBar ">
+                    <a class="glyphicon glyphicon-off" href="{{url('/autenticar/logoff')}}"></a>
+                </button>
+                @endif
             </div>
+
             @yield('content')
         </div>
-        
+
     </body>
 </html>
