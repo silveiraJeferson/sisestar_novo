@@ -10,6 +10,7 @@ use sisestar\MsgResposta;
 use sisestar\Logradouro;
 use sisestar\Setor;
 use sisestar\Logradouro_setor;
+use Validator;
 
 class SetorController extends Controller {
 

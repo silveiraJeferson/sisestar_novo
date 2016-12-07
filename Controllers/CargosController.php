@@ -8,6 +8,7 @@ use sisestar\Http\Requests;
 use sisestar\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use sisestar\Cargo;
+use Validator;
 
 class CargosController extends Controller
 {

@@ -10,6 +10,7 @@ use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use sisestar\MsgResposta;
+use Validator;
 
 class FuncionariosController extends Controller {
 
